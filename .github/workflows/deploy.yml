@@ -32,6 +32,8 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          build-args: |
+            COMMIT_HASH=${{ steps.vars.outputs.SHA_SHORT }}
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/my-app:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/my-app:${{ steps.vars.outputs.SHA_SHORT }}
