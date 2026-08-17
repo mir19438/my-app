@@ -1,0 +1,34 @@
+---
+- name: Deploy Node.js App from DockerHub to Webservers
+  hosts: webservers
+  become: yes
+  vars:
+    # আপনার DockerHub Username এবং Image Name দিন
+    docker_image: "mahmud4550/my-app:latest"
+    container_name: "nodeapp_container"
+
+  tasks:
+    # ১. Ansible Docker Module-এর জন্য কেবল python3-docker নিশ্চিত করা
+    - name: Ensure Python Docker SDK is installed
+      apt:
+        name: python3-docker
+        state: present
+
+    # ২. DockerHub থেকে লেটেস্ট ইমেজের Pull নিশ্চিত করা
+    - name: Pull latest image from DockerHub
+      community.docker.docker_image:
+        name: "{{ docker_image }}"
+        source: pull
+        force_source: yes
+
+    # ৩. কন্টেইনার সার্ভিস চালনা ও পোর্ট ম্যাপিং
+    - name: Run Node.js App Container
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ docker_image }}"
+        state: started
+        hostname: "{{ inventory_hostname }}"
+        restart_policy: always
+        recreate: yes
+        published_ports:
+          - "3000:80"
