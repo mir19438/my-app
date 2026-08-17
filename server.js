@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
         </head>
         <body>
             <div class="card">
-                <h1>🚀 Test 1 App Deployed Successfully!</h1>
+                <h1>🚀 Test 2 App Deployed Successfully!</h1>
                 <div class="info">VM Hostname: <br><span>${hostname}</span></div>
                 <div class="info">Git Commit Hash: <br><span>${COMMIT_HASH}</span></div>
             </div>
