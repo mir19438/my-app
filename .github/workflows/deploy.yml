@@ -89,4 +89,4 @@ jobs:
 
       - name: Run Ansible Playbook
         run: |
-          ansible-playbook -i inventory.ini devops-onboarding/deploy_from_dockerhub.yml
+          ansible-playbook -i inventory.ini deploy_from_dockerhub.yml
