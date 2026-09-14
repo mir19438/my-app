@@ -1,7 +1,7 @@
 FROM node:20-alpine
 
 ARG COMMIT_HASH=unknown
-# অ্যাপ যেন process.env.GIT_COMMIT_HASH পড়তে পারে
+# So that the app can read process.env.GIT_COMMIT_HASH.
 ENV GIT_COMMIT_HASH=$COMMIT_HASH
 
 WORKDIR /usr/src/app

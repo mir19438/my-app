@@ -3,7 +3,7 @@ const os = require('os');
 const app = express();
 const PORT = process.env.PORT || 80;
 
-// ডকার বিল্ডের সময় পাস করা গিট হাশ এনভায়রনমেন্ট ভ্যারিয়েবল থেকে নেওয়া হচ্ছে
+// The Git hash passed during the Docker build is being retrieved from an environment variable.
 const COMMIT_HASH = process.env.GIT_COMMIT_HASH || 'Local / Not Provided';
 
 app.get('/', (req, res) => {
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
         </head>
         <body>
             <div class="card">
-                <h1>🚀 CI/CD done App Deployed Successfully!</h1>
+                <h1>🚀 App Deployed Successfully!</h1>
                 <div class="info">VM Hostname: <br><span>${hostname}</span></div>
                 <div class="info">Git Commit Hash: <br><span>${COMMIT_HASH}</span></div>
             </div>
